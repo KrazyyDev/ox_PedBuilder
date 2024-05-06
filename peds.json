@@ -1,0 +1,24 @@
+[
+    {
+        "isFreezed": true,
+        "pedModel": "a_m_m_acult_01",
+        "isGodMode": true,
+        "pedPosition": {
+            "h": 157.62341308594,
+            "z": 29.497686386108,
+            "y": -1462.4448242188,
+            "x": 92.072113037109
+        }
+    },
+    {
+        "isFreezed": true,
+        "pedModel": "a_m_m_acult_01",
+        "isGodMode": true,
+        "pedPosition": {
+            "h": 157.62341308594,
+            "z": 29.497686386108,
+            "y": -1464.4448242188,
+            "x": 94.072113037109
+        }
+    }
+]

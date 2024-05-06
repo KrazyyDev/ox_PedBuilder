@@ -1,0 +1,12 @@
+{
+  "pedName": "Nom du ped",
+  "pedModel": "Modèle du ped",
+  "pedPosition": "Position du ped",
+  "pedPositionDesc": "Position du ped (X, Y, Z, Heading), (il est mis à votre position de base)",
+  "pedFreeze": "Ped gelé",
+  "pedFreezeDesc": "Ped gelé (true/false)",
+  "pedInvincible": "Ped invincible",
+  "pedInvincibleDesc": "Ped invincible (true/false)",
+  "error": "Erreur",
+  "noPermission": "Vous n'avez pas la permission de faire cela"
+}

@@ -1,0 +1,13 @@
+{
+    "pedName": "Ped Name",
+    "pedModel": "Ped Model",
+    "pedPosition": "Ped Position",
+    "pedPositionDesc": "Ped Position (X, Y, Z, Heading), (it defaults to your base position)",
+    "pedFreeze": "Ped Freeze",
+    "pedFreezeDesc": "Ped Freeze (true/false)",
+    "pedInvincible": "Ped Invincible",
+    "pedInvincibleDesc": "Ped Invincible (true/false)",
+    "error": "Error",
+    "noPermission": "You do not have permission to do that"
+  }
+  
