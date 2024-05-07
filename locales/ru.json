@@ -27,4 +27,3 @@
     "pedsBuilder_Loaded_error": "^1[OX Ped Builder] ^1Невозможно загрузить данные из 'peds.json'",
     "pedsBuilder_Loaded_success": "^1[OX Ped Builder] ^2NPC успешно загружены ^0( %s NPC загружены )"
   }
-  

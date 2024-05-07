@@ -1,1 +1,38 @@
-{}
+{
+    "4428042044": {
+        "isGodMode": true,
+        "uniquePedId": "4428042044",
+        "pedModel": "a_m_m_salton_04",
+        "pedPosition": {
+            "x": 190.32048,
+            "h": 138.149948,
+            "y": -1358.294312,
+            "z": 29.308933
+        },
+        "isFrozen": true
+    },
+    "1209841516": {
+        "isGodMode": true,
+        "uniquePedId": "1209841516",
+        "pedModel": "a_m_m_salton_04",
+        "pedPosition": {
+            "x": 191.887207,
+            "h": 264.16275,
+            "y": -1354.420044,
+            "z": 29.333416
+        },
+        "isFrozen": true
+    },
+    "6178405141": {
+        "isGodMode": true,
+        "uniquePedId": "6178405141",
+        "pedModel": "a_m_m_salton_04",
+        "pedPosition": {
+            "x": 193.752518,
+            "h": 93.870865,
+            "y": -1354.866577,
+            "z": 29.329573
+        },
+        "isFrozen": true
+    }
+}
