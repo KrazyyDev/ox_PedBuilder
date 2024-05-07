@@ -36,7 +36,20 @@ RegisterNetEvent('ox_pedbuilder:createNewPed')
 AddEventHandler('ox_pedbuilder:createNewPed', function(pedInfo, pedCoords)
     local src = source
     if isAuthorised(src) then
-        
+        local pedModel = pedInfo[1]
+        local pedPosition = pedCoords
+        local isFreezed = pedInfo[3]
+        local isGodMode = pedInfo[4]
+        local ped = {
+            pedModel = pedModel,
+            pedPosition = pedPosition,
+            isFreezed = isFreezed,
+            isGodMode = isGodMode
+        }
+        pedDatas[#pedDatas + 1] = ped
+        SaveResourceFile(GetCurrentResourceName(), 'peds.json', json.encode(pedDatas, {indent = true}), -1)
+        TriggerClientEvent('ox_pedbuilder:spawnPed', -1, ped)
+        print("^2[OX PED BUILDER] ^0Nouveau ped ajouté avec succès")
     else
         print("^1 Cheater detected !", GetPlayerName(src), "ID", src)
     end

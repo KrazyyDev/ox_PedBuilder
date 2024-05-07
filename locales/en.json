@@ -8,6 +8,10 @@
     "pedInvincible": "Ped Invincible",
     "pedInvincibleDesc": "Ped Invincible (true/false)",
     "error": "Error",
-    "noPermission": "You do not have permission to do that"
+    "noPermission": "You do not have permission to do that",
+    "menu_title": "OX Ped Builder",
+    "bouton_create_ped": "Create Ped",
+    "bouton_gestions_peds": "Manage Peds",
+    "bouton_gestions_peds_desc": "Manage All Your Peds Server"
   }
   

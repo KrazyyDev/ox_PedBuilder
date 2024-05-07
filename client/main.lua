@@ -1,8 +1,7 @@
 lib.locale()
 local pedsCreate = {}
 
-
-local function loadModel(model)
+local loadModel = function(model)
     if type(model) == 'number' then
         model = model
     else
@@ -14,17 +13,32 @@ local function loadModel(model)
     end
 end
 
-local function splitCoords(coords)
-    print(coords)
+local splitCoords = function(coords)
     local x, y, z, h = string.match(coords, "(.*), (.*), (.*), (.*)")
-    return x, y, z, h
+    return tonumber(x), tonumber(y), tonumber(z), tonumber(h)
 end
 
-local openPedBuilder = function()
+local function openPedBuilder()
+    lib.registerContext({
+        id = 'ped_builder',
+        title = locale("menu_title"),
+        options = {
+            {
+                title = locale("bouton_gestions_peds"),
+                description = locale("bouton_gestions_peds_desc"),
+                icon = "fa fa-users",
+                onSelect = function()
+                    print("Pressed the button!")
+                end,
+            }
+        }
+    })
+end
+
+local function openPedBuilderLo()
     local pedCoords = GetEntityCoords(PlayerPedId())
     local pedHeading = GetEntityHeading(PlayerPedId())
-    local defaultPos = pedCoords.x .. ', ' .. pedCoords.y .. ', ' .. pedCoords.z .. ', ' .. pedHeading
-    
+    local defaultPos = string.format("%f, %f, %f, %f", pedCoords.x, pedCoords.y, pedCoords.z, pedHeading)
     
     local pedInfo = lib.inputDialog('OX PED BUILDER', {
         {type = 'input', label = locale('pedName'), description = locale('pedModel'), required = true, default = Config.PlaceHolderPed},
@@ -32,16 +46,16 @@ local openPedBuilder = function()
         {type = 'checkbox', label = locale('pedFreeze'), description = locale('pedFreezeDesc'), default = false, checked = true},
         {type = 'checkbox', label = locale('pedInvincible'), description = locale('pedInvincibleDesc'), default = false, checked = true},
     })
-    
-    TriggerServerEvent('ox_pedbuilder:createNewPed', pedInfo, splitCoords(pedInfo[2]))
+    local coordx, coordy, coordz, coordh = splitCoords(pedInfo[2])
+    local coords = {x = coordx, y = coordy, z = coordz, h = coordh}
+    TriggerServerEvent('ox_pedbuilder:createNewPed', pedInfo, coords)
 end
 
--- Command pour copier les coordonées du joueur
 if Config.CommandCopyCoords then
     RegisterCommand(Config.CommandCopyCoordsName, function(source, args, rawCommand)
         local pedCoords = GetEntityCoords(PlayerPedId())
         local pedHeading = GetEntityHeading(PlayerPedId())
-        lib.setClipboard(pedCoords.x .. ', ' .. pedCoords.y .. ', ' .. pedCoords.z .. ', ' .. pedHeading)
+        lib.setClipboard(string.format("%f, %f, %f, %f", pedCoords.x, pedCoords.y, pedCoords.z, pedHeading))
     end, false)
 end
 
@@ -53,7 +67,7 @@ end)
 local function createPed(pedListes)
     for _, ped in pairs(pedListes) do
         loadModel(ped.pedModel)
-        pedId = CreatePed(4, ped.pedModel, ped.pedPosition.x, ped.pedPosition.y, ped.pedPosition.z -1, ped.pedPosition.h, false, false)
+        local pedId = CreatePed(4, ped.pedModel, ped.pedPosition.x, ped.pedPosition.y, ped.pedPosition.z - 1, ped.pedPosition.h, false, false)
         SetEntityInvincible(pedId, ped.isGodMode)
         FreezeEntityPosition(pedId, ped.isFreezed)
         SetBlockingOfNonTemporaryEvents(pedId, true)
@@ -61,7 +75,17 @@ local function createPed(pedListes)
     end 
 end
 
--- Creer les peds quand un joueur rejoins le server
+RegisterNetEvent('ox_pedbuilder:spawnPed')
+AddEventHandler('ox_pedbuilder:spawnPed', function(ped)
+    loadModel(ped.pedModel)
+    local pedId = CreatePed(4, ped.pedModel, ped.pedPosition.x, ped.pedPosition.y, ped.pedPosition.z - 1, ped.pedPosition.h, false, false)
+    SetEntityInvincible(pedId, ped.isGodMode)
+    FreezeEntityPosition(pedId, ped.isFreezed)
+    SetBlockingOfNonTemporaryEvents(pedId, true)
+    pedsCreate[#pedsCreate + 1] = pedId
+end)
+
+-- Create peds when the player loaded
 Citizen.CreateThread(function()
     while true do
         if NetworkIsPlayerActive(PlayerId()) then
@@ -75,7 +99,7 @@ Citizen.CreateThread(function()
     end
 end)
 
-
+-- Delete peds when the resource stops
 AddEventHandler('onResourceStop', function(resourceName)
     if (GetCurrentResourceName() ~= resourceName) then
         return
