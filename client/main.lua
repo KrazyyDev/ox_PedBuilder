@@ -1,6 +1,7 @@
 lib.locale()
 local pedsCreate = {}
 
+-- Event for load ped Model
 local loadModel = function(model)
     if type(model) == 'number' then
         model = model
@@ -13,29 +14,14 @@ local loadModel = function(model)
     end
 end
 
+-- Split coords
 local splitCoords = function(coords)
     local x, y, z, h = string.match(coords, "(.*), (.*), (.*), (.*)")
     return tonumber(x), tonumber(y), tonumber(z), tonumber(h)
 end
 
-local function openPedBuilder()
-    lib.registerContext({
-        id = 'ped_builder',
-        title = locale("menu_title"),
-        options = {
-            {
-                title = locale("bouton_gestions_peds"),
-                description = locale("bouton_gestions_peds_desc"),
-                icon = "fa fa-users",
-                onSelect = function()
-                    print("Pressed the button!")
-                end,
-            }
-        }
-    })
-end
-
-local function openPedBuilderLo()
+-- Open inpute to create ped
+function openCreatePedInpute()
     local pedCoords = GetEntityCoords(PlayerPedId())
     local pedHeading = GetEntityHeading(PlayerPedId())
     local defaultPos = string.format("%f, %f, %f, %f", pedCoords.x, pedCoords.y, pedCoords.z, pedHeading)
@@ -51,6 +37,7 @@ local function openPedBuilderLo()
     TriggerServerEvent('ox_pedbuilder:createNewPed', pedInfo, coords)
 end
 
+-- Copy coords
 if Config.CommandCopyCoords then
     RegisterCommand(Config.CommandCopyCoordsName, function(source, args, rawCommand)
         local pedCoords = GetEntityCoords(PlayerPedId())
@@ -59,11 +46,7 @@ if Config.CommandCopyCoords then
     end, false)
 end
 
-RegisterNetEvent("ox_pedbuilder:openPedBuilder")
-AddEventHandler("ox_pedbuilder:openPedBuilder", function(args)
-    openPedBuilder()
-end)
-
+-- Create peds
 local function createPed(pedListes)
     for _, ped in pairs(pedListes) do
         loadModel(ped.pedModel)
@@ -75,6 +58,7 @@ local function createPed(pedListes)
     end 
 end
 
+-- Event to spawn ped
 RegisterNetEvent('ox_pedbuilder:spawnPed')
 AddEventHandler('ox_pedbuilder:spawnPed', function(ped)
     loadModel(ped.pedModel)
@@ -108,6 +92,20 @@ AddEventHandler('onResourceStop', function(resourceName)
         if DoesEntityExist(ped) then
             DeleteEntity(ped)
             DeletePed(ped)
+        end
+    end
+end)
+
+-- Event to delete selected peds
+RegisterNetEvent("ox_pedbuilder:deletePed")
+AddEventHandler("ox_pedbuilder:deletePed", function(pedCoords)
+    local coords = vector3(pedCoords.x, pedCoords.y, pedCoords.z)
+    local peds = lib.getNearbyPeds(coords, 2.6)
+    DeleteEntity(peds[1].ped)
+    for _, ped in pairs(pedsCreate) do
+        if ped == peds[1].ped then
+            table.remove(pedsCreate, _)
+            break
         end
     end
 end)

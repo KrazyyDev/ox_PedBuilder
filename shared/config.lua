@@ -3,6 +3,7 @@ Config = {}
 Config.PlaceHolderPed = "a_m_m_salton_04"
 
 Config.CommandCopyCoords = true
+
 Config.CommandCopyCoordsName = "copycoords"
 
 Config.CommandOpenPedBuilderName = "pedbuilder"
@@ -17,6 +18,7 @@ Config.CommandOpenPedBuilderName = "pedbuilder"
     "xbl:11000010b1b1b1b" -- xblid
     "license2:56afb46bfc02e66cd9c48e3cb3538df83a8fe844", -- license
 ]]
+
 Config.OpenAuthorisation = {
     "discord:1121068653710938222",
     "license:56afb46bfc02e66cd9c48e3cb3538df83a8fe844"

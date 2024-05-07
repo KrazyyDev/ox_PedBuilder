@@ -10,11 +10,11 @@ shared_scripts({
 });
 
 server_scripts({
-    'server/main.lua',
+    'server/sv_main.lua',
 });
 
 client_scripts({
-    'client/main.lua',
+    'client/*.lua',
 });
 
 files({
