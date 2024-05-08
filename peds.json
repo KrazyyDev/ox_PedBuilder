@@ -1,19 +1,19 @@
 [
     {
+        "coords": {
+            "h": 160.601456,
+            "x": 227.263245,
+            "y": -876.516235,
+            "z": 30.492073
+        },
         "invincible": true,
+        "temporary": true,
+        "model": "a_m_m_salton_04",
+        "freeze": true,
         "index": 1,
         "animation": {
-            "dict": "WORLD_HUMAN",
-            "animation": "WORLD_HUMAN_CIGAR"
-        },
-        "coords": {
-            "y": -878.030762,
-            "x": 227.156052,
-            "h": 0.0,
-            "z": 30.477985
-        },
-        "temporary": true,
-        "freeze": true,
-        "model": "a_m_m_salton_04"
+            "animation": "WORLD_HUMAN_SMOKING",
+            "dict": "WORLD_HUMAN"
+        }
     }
 ]

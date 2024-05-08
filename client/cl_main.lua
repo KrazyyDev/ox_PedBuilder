@@ -2,13 +2,19 @@ lib.locale()
 local pedDatas = {}
 
 local function loadModel(model)
-    if type(model) == 'number' then
-        model = model
-    else
-        model = GetHashKey(model)
+    local modelHash = model
+    if type(model) ~= 'number' then
+        modelHash = GetHashKey(model)
     end
-    while not HasModelLoaded(model) do
-        RequestModel(model)
+    while not HasModelLoaded(modelHash) do
+        RequestModel(modelHash)
+        Citizen.Wait(0)
+    end
+end
+
+local function loadAnimDict(dict)
+    while not HasAnimDictLoaded(dict) do
+        RequestAnimDict(dict)
         Citizen.Wait(0)
     end
 end
@@ -67,7 +73,8 @@ local function OpenPedBuilder()
     lib.showContext('ped_builder')
 end
 
-local function CreatePed()
+-- Fonction pour créer les PNJs
+local function CreatePedBuilder()    
     for _, ped in pairs(pedDatas) do
         loadModel(ped.model)
         local ped_build = CreatePed(4, ped.model, ped.coords.x, ped.coords.y, ped.coords.z, ped.coords.h, false, false)
@@ -75,18 +82,23 @@ local function CreatePed()
         FreezeEntityPosition(ped_build, ped.freeze)
         SetBlockingOfNonTemporaryEvents(ped_build, ped.temporary)
         if ped.animation then
-            RequestAnimDict(ped.animation.dict)
-            TaskPlayAnim(ped_build, ped.animation.dict, ped.animation.animation, 8.0, 1.0, -1, 1, 0, 0, 0, 0)
+            loadAnimDict(ped.animation.dict)
+            if DoesAnimDictExist(ped.animation.dict) then
+                TaskPlayAnim(ped_build, ped.animation.dict, ped.animation.animation, 8.0, 1.0, -1, 1, 0, 0, 0, 0)
+            else
+                print("Le dictionnaire d'animation n'existe pas : " .. ped.animation.dict)
+            end
         end
     end
 end
+
 
 Citizen.CreateThread(function()
     local peds = LoadResourceFile(GetCurrentResourceName(), 'peds.json')
     if peds then
         pedDatas = json.decode(peds)
         Wait(1000)
-        CreatePed()
+        CreatePedBuilder()
     else
         lib.notify({
             title = "Erreur",
@@ -96,14 +108,13 @@ Citizen.CreateThread(function()
     end
 end)
 
-
 RegisterNetEvent('ox:pedBuilder:UpdatePed')
 AddEventHandler('ox:pedBuilder:UpdatePed', function(action, data)
     if action == "add" then
         CreatePed(data.model, data.freeze, data.invincible, data.temporary, data.coords, data.animation)
+        pedDatas[#pedDatas + 1] = data
     end
 end)
-
 
 RegisterCommand(Config.CommandOpenPedBuilderName, function()
     lib.callback('ox:pedBuilder:asPermissions', false, function(isAuthorised)
@@ -118,4 +129,3 @@ RegisterCommand(Config.CommandOpenPedBuilderName, function()
         end
     end)
 end, false)
-

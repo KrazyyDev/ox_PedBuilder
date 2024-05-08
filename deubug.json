@@ -1,16 +1,22 @@
-{
-  "animation": {
-    "dict": "WORLD_HUMAN",
-    "animation": "WORLD_HUMAN_BRIEFCASE"
+[
+  {
+    "coords": { "z": 30.478096, "h": 0.0, "x": 227.103302, "y": -876.540649 },
+    "freeze": true,
+    "invincible": true,
+    "temporary": true,
+    "animation": {
+      "dict": "WORLD_HUMAN",
+      "animation": "WORLD_HUMAN_PAPARAZZI"
+    },
+    "index": 1,
+    "model": "a_m_m_salton_04"
   },
-  "temporary": true,
-  "invincible": true,
-  "coords": {
-    "y": -878.026245,
-    "z": 30.4921,
-    "x": 227.160324,
-    "h": 81.064461
-  },
-  "freeze": true,
-  "model": "a_m_m_salton_04"
-}
+  {
+    "freeze": true,
+    "temporary": true,
+    "model": "a_m_m_salton_04",
+    "coords": { "z": 30.478096, "x": 227.103302, "h": 0.0, "y": -876.540649 },
+    "index": 1,
+    "invincible": true
+  }
+]

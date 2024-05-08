@@ -1,7 +1,7 @@
 lib.locale()
 local pedDatas = {}
 
--- Fonction pour vérifier si un joueur est autorisé
+-- Function to check if a player is authorized
 local isAuthorized = function(playerId)    
     local identifiers = GetPlayerIdentifiers(playerId)
     for _, id in pairs(identifiers) do
@@ -14,12 +14,12 @@ local isAuthorized = function(playerId)
     return false
 end
 
--- Enregistrement de la fonction pour vérifier les autorisations
+-- Registering the function to check permissions
 lib.callback.register('ox:pedBuilder:asPermissions', function()
     return isAuthorized(tonumber(source))
 end)
 
--- Événement pour créer un nouveau ped
+-- Event to create a new ped
 RegisterNetEvent('ox:pedBuilder:CreateNewPed')
 AddEventHandler('ox:pedBuilder:CreateNewPed', function(pedData)
     local _src = tonumber(source)
