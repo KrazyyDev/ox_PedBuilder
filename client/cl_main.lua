@@ -67,16 +67,17 @@ local function OpenPedBuilder()
     lib.showContext('ped_builder')
 end
 
-local function CreatePed(data)
-    print(data)
-    loadModel(data.model)
-    local ped = CreatePed(4, data.model, data.coords.x, data.coords.y, data.coords.z, data.coords.h, false, false)
-    SetEntityInvincible(ped, data.invincible)
-    FreezeEntityPosition(ped, data.freeze)
-    SetBlockingOfNonTemporaryEvents(ped, data.temporary)
-    if data.animation then
-        RequestAnimDict(data.animation.dict)
-        TaskPlayAnim(ped, data.animation.dict, data.animation.animation, 8.0, 1.0, -1, 1, 0, 0, 0, 0)
+local function CreatePed()
+    for _, ped in pairs(pedDatas) do
+        loadModel(ped.model)
+        local ped_build = CreatePed(4, ped.model, ped.coords.x, ped.coords.y, ped.coords.z, ped.coords.h, false, false)
+        SetEntityInvincible(ped_build, ped.invincible)
+        FreezeEntityPosition(ped_build, ped.freeze)
+        SetBlockingOfNonTemporaryEvents(ped_build, ped.temporary)
+        if ped.animation then
+            RequestAnimDict(ped.animation.dict)
+            TaskPlayAnim(ped_build, ped.animation.dict, ped.animation.animation, 8.0, 1.0, -1, 1, 0, 0, 0, 0)
+        end
     end
 end
 
@@ -85,18 +86,7 @@ Citizen.CreateThread(function()
     if peds then
         pedDatas = json.decode(peds)
         Wait(1000)
-        for _, ped in pairs(pedDatas) do
-            local data = {
-                model = ped.model,
-                freeze = ped.freeze,
-                invincible = ped.invincible,
-                temporary = ped.temporary,
-                coords = ped.coords,
-                animation = ped.animation,
-                index = ped.index
-            }
-            CreatePed(data)
-        end
+        CreatePed()
     else
         lib.notify({
             title = "Erreur",
@@ -110,7 +100,7 @@ end)
 RegisterNetEvent('ox:pedBuilder:UpdatePed')
 AddEventHandler('ox:pedBuilder:UpdatePed', function(action, data)
     if action == "add" then
-        CreatePed(data)
+        CreatePed(data.model, data.freeze, data.invincible, data.temporary, data.coords, data.animation)
     end
 end)
 
