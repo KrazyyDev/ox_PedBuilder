@@ -8,7 +8,6 @@ Config.CommandCopyCoordsName = "copycoords"
 
 Config.CommandOpenPedBuilderName = "pedbuilder"
 
-
 --[[
 "license:56afb46bfc02e66cd9c48e3cb3538df83a8fe844", -- license
 "steam:11000010b1b1b1b", -- steam
@@ -22,4 +21,23 @@ Config.CommandOpenPedBuilderName = "pedbuilder"
 Config.OpenAuthorization = {
     "discord:1121068653710938222",
     "license:56afb46bfc02e66cd9c48e3cb3538df83a8fe844"
+}
+
+Config.AnimationsListes = {
+    clipboard = {animation = 'WORLD_HUMAN_CLIPBOARD', dict = 'WORLD_HUMAN'},
+    binoculars = {animation = 'WORLD_HUMAN_BINOCULARS', dict = 'WORLD_HUMAN'},
+    brief = {animation = 'WORLD_HUMAN_BRIEFCASE', dict = 'WORLD_HUMAN'},
+    camera = {animation = 'WORLD_HUMAN_PAPARAZZI', dict = 'WORLD_HUMAN'},
+    weed = {animation = 'WORLD_HUMAN_SMOKING_POT', dict = 'WORLD_HUMAN'},
+    smoke = {animation = 'WORLD_HUMAN_SMOKING', dict = 'WORLD_HUMAN'},
+    film = {animation = 'WORLD_HUMAN_MOBILE_FILM_SHOCKING', dict = 'WORLD_HUMAN'},
+    notepad = {animation = 'WORLD_HUMAN_CLIPBOARD', dict = 'WORLD_HUMAN'},
+    phone = {animation = 'WORLD_HUMAN_STAND_MOBILE', dict = 'WORLD_HUMAN'},
+    umbrella = {animation = 'WORLD_HUMAN_DRINKING', dict = 'WORLD_HUMAN'},
+    beer = {animation = 'WORLD_HUMAN_DRINKING', dict = 'WORLD_HUMAN'},
+    coffee = {animation = 'WORLD_HUMAN_DRINKING', dict = 'WORLD_HUMAN'},
+    joint = {animation = 'WORLD_HUMAN_SMOKING', dict = 'WORLD_HUMAN'},
+    cigar = {animation = 'WORLD_HUMAN_SMOKING', dict = 'WORLD_HUMAN'},
+    cigar2 = {animation = 'WORLD_HUMAN_CIGAR', dict = 'WORLD_HUMAN'},
+    cigar7 = {animation = 'WORLD_HUMAN_CIGAR', dict = 'WORLD_HUMAN'},
 }

@@ -14,7 +14,7 @@ server_scripts({
 });
 
 client_scripts({
-    'client/*.lua',
+    'client/cl_main.lua',
 });
 
 files({
