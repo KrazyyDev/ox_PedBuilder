@@ -23,6 +23,10 @@ end)
 RegisterNetEvent('ox:pedBuilder:CreateNewPed')
 AddEventHandler('ox:pedBuilder:CreateNewPed', function(pedData)
     local _src = tonumber(source)
+    local file = LoadResourceFile(GetCurrentResourceName(), 'peds.json')
+    if file then
+        pedDatas = json.decode(file)
+    end
     if isAuthorized(_src) then
         local data = {
             model = pedData.model,
@@ -36,6 +40,34 @@ AddEventHandler('ox:pedBuilder:CreateNewPed', function(pedData)
         }
         pedDatas[#pedDatas + 1] = data
         TriggerClientEvent('ox:pedBuilder:UpdatePed', -1, "add", data)
+        SaveResourceFile(GetCurrentResourceName(), 'peds.json', json.encode(pedDatas, { indent = true }))
+    else
+        DropPlayer(_src, 'Unauthorized')
+        print("[OX PED BUILDER] [CHEATER DETECTED] [".._src.."] ["..GetPlayerName(_src).." ]")
+    end
+end)
+
+-- Event pour update un ped
+RegisterNetEvent('ox:pedBuilder:UpdatePed')
+AddEventHandler('ox:pedBuilder:UpdatePed', function(pedData)
+    local _src = tonumber(source)
+    local file = LoadResourceFile(GetCurrentResourceName(), 'peds.json')
+    if file then
+        pedDatas = json.decode(file)
+    end
+    if isAuthorized(_src) then
+        local data = {
+            model = pedData.model,
+            freeze = pedData.freeze,
+            coords = pedData.coords,
+            invincible = pedData.invincible,
+            temporary = pedData.temporary,
+            animation = pedData.animation,
+            animationDict = pedData.animationDict,
+            index = pedData.index
+        }
+        pedDatas[pedData.index] = data
+        TriggerClientEvent('ox:pedBuilder:UpdatePed', -1, "update", data)
         SaveResourceFile(GetCurrentResourceName(), 'peds.json', json.encode(pedDatas, { indent = true }))
     else
         DropPlayer(_src, 'Unauthorized')

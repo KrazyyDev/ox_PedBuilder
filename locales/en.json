@@ -2,6 +2,9 @@
   "Menu": {
     "Menu_Tiltle": "OX Ped Builder",
     "Bouton_Create_Ped": "Create Ped",
+    "Bouton_Edit_Peds": "Edit Peds",
+    "Bouton_Edit_Peds_Description": "Edit the peds created with this tool",
+    "Gestion_Peds_Title": "Peds Management",
     "Bouton_Create_Ped_Description": "Create a new ped with the selected options",
     "Not_Authorized": "You are not authorized to use this tool",
     "Ped_Not_Found": "Ped not found"
@@ -18,6 +21,10 @@
     "Ped_Non_Temporary_Events": "Scarry Events",
     "Ped_Non_Temporary_Events_Description": "The ped will dont have scarry events if the checkbox is checked",
     "Ped_Animation": "Ped Animation",
-    "Ped_Animation_Description": "The animation of the ped"
+    "Ped_Animation_Description": "The animation of the ped",
+    "Ped_PositionX": "Position X",
+    "Ped_PositionY": "Position Y",
+    "Ped_PositionZ": "Position Z",
+    "Ped_Heading": "Heading",
   }
 }
