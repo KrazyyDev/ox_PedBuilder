@@ -32,11 +32,8 @@ Config.AnimationsListes = {
     film = {animation = 'WORLD_HUMAN_MOBILE_FILM_SHOCKING', dict = 'WORLD_HUMAN'},
     notepad = {animation = 'WORLD_HUMAN_CLIPBOARD', dict = 'WORLD_HUMAN'},
     phone = {animation = 'WORLD_HUMAN_STAND_MOBILE', dict = 'WORLD_HUMAN'},
-    umbrella = {animation = 'WORLD_HUMAN_DRINKING', dict = 'WORLD_HUMAN'},
     beer = {animation = 'WORLD_HUMAN_DRINKING', dict = 'WORLD_HUMAN'},
     coffee = {animation = 'WORLD_HUMAN_DRINKING', dict = 'WORLD_HUMAN'},
     joint = {animation = 'WORLD_HUMAN_SMOKING', dict = 'WORLD_HUMAN'},
     cigar = {animation = 'WORLD_HUMAN_SMOKING', dict = 'WORLD_HUMAN'},
-    cigar2 = {animation = 'WORLD_HUMAN_CIGAR', dict = 'WORLD_HUMAN'},
-    cigar7 = {animation = 'WORLD_HUMAN_CIGAR', dict = 'WORLD_HUMAN'},
 }

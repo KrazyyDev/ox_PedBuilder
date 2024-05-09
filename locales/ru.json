@@ -1,0 +1,33 @@
+{
+    "Menu": {
+      "Menu_Tiltle": "OX Построитель NPC",
+      "Bouton_Create_Ped": "Создать NPC",
+      "Bouton_Edit_Peds": "Редактировать NPC",
+      "Bouton_Edit_Peds_Description": "Редактировать созданных с помощью этого инструмента NPC",
+      "Gestion_Peds_Title": "Управление NPC",
+      "Bouton_Create_Ped_Description": "Создать нового NPC с выбранными параметрами",
+      "Not_Authorized": "У вас нет прав на использование этого инструмента",
+      "Ped_Not_Found": "NPC не найден"
+    },
+    "Ped_Options": {
+      "Ped_Model": "Модель NPC",
+      "Ped_Model_Description": "Модель NPC",
+      "Ped_Position": "Позиция NPC",
+      "Ped_Position_Description": "Позиция NPC (X, Y, Z, Ориентация)",
+      "Ped_Freeze": "Заморозить NPC",
+      "Ped_Freeze_Description": "Заморозить позицию NPC",
+      "Ped_Invincible": "Неуязвимый NPC",
+      "Ped_Invincible_Description": "NPC не может умереть",
+      "Ped_Non_Temporary_Events": "Нетемпоральные события",
+      "Ped_Non_Temporary_Events_Description": "NPC не столкнется с страшными событиями, если флажок установлен",
+      "Ped_Animation": "Анимация NPC",
+      "Ped_Animation_Description": "Анимация NPC",
+      "Ped_PositionX": "Позиция X",
+      "Ped_PositionY": "Позиция Y",
+      "Ped_PositionZ": "Позиция Z",
+      "Ped_Heading": "Ориентация",
+      "Ped_Delete": "Удалить NPC",
+      "Ped_Delete_Description": "Удалить NPC"
+    }
+  }
+  

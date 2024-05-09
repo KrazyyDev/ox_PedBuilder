@@ -26,5 +26,7 @@
     "Ped_PositionY": "Position Y",
     "Ped_PositionZ": "Position Z",
     "Ped_Heading": "Heading",
+    "Ped_Delete": "Delete Ped",
+    "Ped_Delete_Description": "Delete the ped"
   }
 }

@@ -1,0 +1,33 @@
+{
+    "Menu": {
+      "Menu_Tiltle": "OX NPC-Ersteller",
+      "Bouton_Create_Ped": "NPC erstellen",
+      "Bouton_Edit_Peds": "NPCs bearbeiten",
+      "Bouton_Edit_Peds_Description": "Bearbeiten der mit diesem Tool erstellten NPCs",
+      "Gestion_Peds_Title": "NPC-Verwaltung",
+      "Bouton_Create_Ped_Description": "Erstellen eines neuen NPCs mit den ausgewählten Optionen",
+      "Not_Authorized": "Sie sind nicht berechtigt, dieses Tool zu verwenden",
+      "Ped_Not_Found": "NPC nicht gefunden"
+    },
+    "Ped_Options": {
+      "Ped_Model": "NPC-Modell",
+      "Ped_Model_Description": "Das Modell des NPCs",
+      "Ped_Position": "NPC-Position",
+      "Ped_Position_Description": "Die Position des NPCs (X, Y, Z, Ausrichtung)",
+      "Ped_Freeze": "NPC einfrieren",
+      "Ped_Freeze_Description": "Einfrieren der Position des NPCs",
+      "Ped_Invincible": "Unverwundbarer NPC",
+      "Ped_Invincible_Description": "Der NPC kann nicht sterben",
+      "Ped_Non_Temporary_Events": "Nicht-temporäre Ereignisse",
+      "Ped_Non_Temporary_Events_Description": "Der NPC erlebt keine beängstigenden Ereignisse, wenn das Kontrollkästchen aktiviert ist",
+      "Ped_Animation": "NPC-Animation",
+      "Ped_Animation_Description": "Die Animation des NPCs",
+      "Ped_PositionX": "Position X",
+      "Ped_PositionY": "Position Y",
+      "Ped_PositionZ": "Position Z",
+      "Ped_Heading": "Ausrichtung",
+      "Ped_Delete": "NPC löschen",
+      "Ped_Delete_Description": "Den NPC löschen"
+    }
+  }
+  

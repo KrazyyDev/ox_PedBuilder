@@ -1,0 +1,33 @@
+{
+    "Menu": {
+      "Menu_Tiltle": "Constructor de NPCs OX",
+      "Bouton_Create_Ped": "Crear NPC",
+      "Bouton_Edit_Peds": "Editar NPCs",
+      "Bouton_Edit_Peds_Description": "Editar los NPCs creados con esta herramienta",
+      "Gestion_Peds_Title": "Gestión de NPCs",
+      "Bouton_Create_Ped_Description": "Crear un nuevo NPC con las opciones seleccionadas",
+      "Not_Authorized": "No estás autorizado para usar esta herramienta",
+      "Ped_Not_Found": "NPC no encontrado"
+    },
+    "Ped_Options": {
+      "Ped_Model": "Modelo del NPC",
+      "Ped_Model_Description": "El modelo del NPC",
+      "Ped_Position": "Posición del NPC",
+      "Ped_Position_Description": "La posición del NPC (X, Y, Z, Orientación)",
+      "Ped_Freeze": "Congelar NPC",
+      "Ped_Freeze_Description": "Congelar la posición del NPC",
+      "Ped_Invincible": "NPC invencible",
+      "Ped_Invincible_Description": "El NPC no puede morir",
+      "Ped_Non_Temporary_Events": "Eventos no temporales",
+      "Ped_Non_Temporary_Events_Description": "El NPC no experimentará eventos aterradores si está marcado",
+      "Ped_Animation": "Animación del NPC",
+      "Ped_Animation_Description": "La animación del NPC",
+      "Ped_PositionX": "Posición X",
+      "Ped_PositionY": "Posición Y",
+      "Ped_PositionZ": "Posición Z",
+      "Ped_Heading": "Orientación",
+      "Ped_Delete": "Eliminar NPC",
+      "Ped_Delete_Description": "Eliminar el NPC"
+    }
+  }
+  

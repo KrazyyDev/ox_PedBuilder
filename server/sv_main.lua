@@ -74,3 +74,36 @@ AddEventHandler('ox:pedBuilder:UpdatePed', function(pedData)
         print("[OX PED BUILDER] [CHEATER DETECTED] [".._src.."] ["..GetPlayerName(_src).." ]")
     end
 end)
+
+-- Event to delete a ped
+RegisterNetEvent('ox:pedBuilder:DeletePed')
+AddEventHandler('ox:pedBuilder:DeletePed', function(index)
+    local _src = tonumber(source)
+    local file = LoadResourceFile(GetCurrentResourceName(), 'peds.json')
+    local pedDatas = {}
+
+    if file then
+        pedDatas = json.decode(file)
+    end
+
+    if isAuthorized(_src) then
+        local foundIndex = nil
+        for i, ped in ipairs(pedDatas) do
+            if ped.index == index then
+                foundIndex = i
+                TriggerClientEvent('ox:pedBuilder:UpdatePed', -1, "delete", ped)
+                break
+            end
+        end
+
+        if foundIndex then
+            table.remove(pedDatas, foundIndex)
+            SaveResourceFile(GetCurrentResourceName(), 'peds.json', json.encode(pedDatas, { indent = true }))
+        else
+            print("[OX PED BUILDER] [ERROR] Ped with index " .. index .. " not found.")
+        end
+    else
+        DropPlayer(_src, 'Unauthorized')
+        print("[OX PED BUILDER] [CHEATER DETECTED] [".._src.."] ["..GetPlayerName(_src).." ]")
+    end
+end)

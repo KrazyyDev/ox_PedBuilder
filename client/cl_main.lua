@@ -13,10 +13,10 @@ local function loadModel(model)
     end
 end
 
-local function loadAnimDict(dict)
-    while not HasAnimDictLoaded(dict) do
-        RequestAnimDict(dict)
-        Citizen.Wait(0)
+function loadAnimDict(dict)
+    RequestAnimDict(dict)
+    while (not HasAnimDictLoaded(dict)) do        
+        Citizen.Wait(1)
     end
 end
 
@@ -50,18 +50,24 @@ local function OpenPedBuilder()
                     {type = 'checkbox', label = locale('Ped_Options.Ped_Invincible'), description = locale('Ped_Options.Ped_Invincible_Description'), checked= ped.invincible},
                     {type = 'checkbox', label = locale('Ped_Options.Ped_Non_Temporary_Events'), description = locale('Ped_Options.Ped_Non_Temporary_Events_Description'), checked = ped.temporary},
                     {type = 'select', label = locale('Ped_Options.Ped_Animation'), description = locale('Ped_Options.Ped_Animation_Description'), options = optionsAnimation, required = false},
+                    {type = 'checkbox', label = locale('Ped_Options.Ped_Delete'), description = locale('Ped_Options.Ped_Delete_Description'), checked = false},
+                
                 })
                 
                 if newPedInfo then
+                    if newPedInfo[10] then
+                        TriggerServerEvent('ox:pedBuilder:DeletePed', ped.index)
+                        return
+                    end
                     local coordx, coordy, coordz, coordh = splitCoords(newPedInfo[2]..", "..newPedInfo[3]..", "..newPedInfo[4]..", "..newPedInfo[5])
                     local coords = {x = coordx, y = coordy, z = coordz, h = coordh}
                     local data = {
                         model = newPedInfo[1],
                         coords = {
-                            x = newPedInfo[2],
-                            y = newPedInfo[3],
-                            z = newPedInfo[4],
-                            h = newPedInfo[5]
+                            x = tonumber(newPedInfo[2]),
+                            y = tonumber(newPedInfo[3]),
+                            z = tonumber(newPedInfo[4]) - 1,
+                            h = tonumber(newPedInfo[5])
                         },
                         freeze = newPedInfo[6],
                         invincible = newPedInfo[7],
@@ -143,12 +149,11 @@ local function OpenPedBuilder()
         FreezeEntityPosition(ped_build, freeze)
         SetBlockingOfNonTemporaryEvents(ped_build, temporary)
         if animation then
-            loadAnimDict(animation.dict)
-            if DoesAnimDictExist(animation.dict) then
-                TaskPlayAnim(ped_build, animation.dict, animation.animation, 8.0, 1.0, -1, 1, 0, 0, 0, 0)
-            else
-                print("Le dictionnaire d'animation n'existe pas : " .. animation.dict)
-            end
+            local anim = animation.animation
+            RequestAnimDict(animation.dict)
+            ClearPedTasks(ped_build)
+            TaskStartScenarioInPlace(ped_build, anim, 0, false)
+            TaskPlayAnim(ped_build, animation.dict, 8.0, true, 1.0, false, 0, false)
         end
         pedCreate[#pedCreate + 1] = ped_build
     end
@@ -184,14 +189,30 @@ local function OpenPedBuilder()
             end
             pedDatas[#pedDatas + 1] = data
         elseif action == "update" then
-            for i, ped in pairs(pedDatas) do
-                if ped.index == data.index then
-                    local peds = lib.getNearbyPeds(vector3(ped.coords.x, ped.coords.y, ped.coords.z), 1)
-                    DeleteEntity(peds[1].ped)
-                    if ped.animation then
-                        LoadPedClient(data.model, data.freeze, data.invincible, data.temporary, data.coords, data.animation)
-                    else
-                        LoadPedClient(data.model, data.freeze, data.invincible, data.temporary, data.coords)
+            local ped = pedCreate[data.index]
+            if DoesEntityExist(ped) then
+                SetEntityCoords(ped, data.coords.x, data.coords.y, data.coords.z)
+                SetEntityHeading(ped, data.coords.h)
+                SetEntityInvincible(ped, data.invincible)
+                FreezeEntityPosition(ped, data.freeze)
+                SetBlockingOfNonTemporaryEvents(ped, data.temporary)
+                if data.animation then
+                    local anim = data.animation.animation
+                    RequestAnimDict(data.animation.dict)
+                    ClearPedTasks(ped)
+                    TaskStartScenarioInPlace(ped, anim, 0, false)
+                    TaskPlayAnim(ped, data.animation.dict, 8.0, true, 1.0, false, 0, false)
+                end
+            end
+        elseif action == "delete" then
+            local coords = data.coords
+            local peds = lib.getNearbyPeds(vector3(coords.x, coords.y, coords.z), 1.0)
+            if peds then
+                local ped = peds[1].ped
+                DeleteEntity(ped)
+                for i, ped in pairs(pedDatas) do
+                    if ped.index == data.index then
+                        table.remove(pedDatas, i)
                     end
                 end
             end
