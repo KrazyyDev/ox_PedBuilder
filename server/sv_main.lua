@@ -41,6 +41,7 @@ AddEventHandler('ox:pedBuilder:CreateNewPed', function(pedData)
         pedDatas[#pedDatas + 1] = data
         TriggerClientEvent('ox:pedBuilder:UpdatePed', -1, "add", data)
         SaveResourceFile(GetCurrentResourceName(), 'peds.json', json.encode(pedDatas, { indent = true }))
+        TriggerClientEvent('ox:pedBuilder:UpdateTable', -1, pedDatas)
     else
         DropPlayer(_src, 'Unauthorized')
         print("[OX PED BUILDER] [CHEATER DETECTED] [".._src.."] ["..GetPlayerName(_src).." ]")
@@ -69,6 +70,7 @@ AddEventHandler('ox:pedBuilder:UpdatePed', function(pedData)
         pedDatas[pedData.index] = data
         TriggerClientEvent('ox:pedBuilder:UpdatePed', -1, "update", data)
         SaveResourceFile(GetCurrentResourceName(), 'peds.json', json.encode(pedDatas, { indent = true }))
+        TriggerClientEvent('ox:pedBuilder:UpdateTable', -1, pedDatas)
     else
         DropPlayer(_src, 'Unauthorized')
         print("[OX PED BUILDER] [CHEATER DETECTED] [".._src.."] ["..GetPlayerName(_src).." ]")
@@ -99,6 +101,7 @@ AddEventHandler('ox:pedBuilder:DeletePed', function(index)
         if foundIndex then
             table.remove(pedDatas, foundIndex)
             SaveResourceFile(GetCurrentResourceName(), 'peds.json', json.encode(pedDatas, { indent = true }))
+            TriggerClientEvent('ox:pedBuilder:UpdateTable', -1, pedDatas)
         else
             print("[OX PED BUILDER] [ERROR] Ped with index " .. index .. " not found.")
         end

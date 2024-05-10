@@ -2,9 +2,6 @@ Config = {}
 
 Config.PlaceHolderPed = "a_m_m_salton_04"
 
-Config.CommandCopyCoords = true
-Config.CommandCopyCoordsName = "copycoords"
-
 Config.CommandOpenPedBuilderName = "pedbuilder"
 
 --[[

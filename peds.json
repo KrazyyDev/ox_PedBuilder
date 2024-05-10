@@ -1,1 +1,32 @@
-[]
+[
+    {
+        "invincible": true,
+        "coords": {
+            "z": 25.185516,
+            "x": 478.751007,
+            "h": 322.921936,
+            "y": -1920.670044
+        },
+        "index": 2,
+        "freeze": true,
+        "animation": {
+            "dict": "WORLD_HUMAN",
+            "animation": "WORLD_HUMAN_BINOCULARS"
+        },
+        "temporary": true,
+        "model": "a_m_m_salton_04"
+    },
+    {
+        "invincible": true,
+        "coords": {
+            "z": 24.185516,
+            "h": 322.921936,
+            "x": 479.751007,
+            "y": -1921.670044
+        },
+        "freeze": true,
+        "index": 2,
+        "temporary": true,
+        "model": "a_m_m_salton_04"
+    }
+]
