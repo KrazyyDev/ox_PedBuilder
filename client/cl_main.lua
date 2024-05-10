@@ -238,15 +238,3 @@ RegisterNetEvent('ox:pedBuilder:UpdateTable')
 AddEventHandler('ox:pedBuilder:UpdateTable', function(peds)
     pedDatas = peds
 end)
-
-
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(1)
-        SetVehicleDensityMultiplierThisFrame(0.00)
-        SetPedDensityMultiplierThisFrame(0.01)
-        SetRandomVehicleDensityMultiplierThisFrame(0.00)
-        SetParkedVehicleDensityMultiplierThisFrame(0.00)
-        SetScenarioPedDensityMultiplierThisFrame(0.00, 0.00)
-    end
-end)

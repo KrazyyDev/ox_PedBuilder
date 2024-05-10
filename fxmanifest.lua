@@ -2,7 +2,7 @@ fx_version('cerulean')
 games({ 'gta5' })
 lua54('yes')
 author('krazyy13')
-description 'OX PED BUILDER'
+description 'https://discord.gg/9hKepj52'
 
 shared_scripts({
     '@ox_lib/init.lua',

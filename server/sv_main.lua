@@ -110,3 +110,9 @@ AddEventHandler('ox:pedBuilder:DeletePed', function(index)
         print("[OX PED BUILDER] [CHEATER DETECTED] [".._src.."] ["..GetPlayerName(_src).." ]")
     end
 end)
+
+
+Citizen.CreateThread(function()
+    print("[OX PED BUILDER] [STARTED] [AUTHOR: KRAZYY13] [DISCORD: https://discord.gg/9hKepj52]")
+    print("JOIN OUR DISCORD SERVER FOR SUPPORT AND UPDATES: https://discord.gg/9hKepj52")
+end)
